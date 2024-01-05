@@ -141,6 +141,9 @@ clock = pygame.time.Clock()
  
 snake_block = 10
 snake_speed = 15
+
+sound_effect = pygame.mixer.Sound('chomp.mp3')
+sound_effect.set_volume(0.2)
  
 font_style = pygame.font.SysFont("bahnschrift", 25)
 score_font = pygame.font.SysFont("comicsansms", 25)
@@ -236,6 +239,7 @@ def gameLoop():
         pygame.display.update()
  
         if x1 == foodx and y1 == foody:
+            sound_effect.play()
             foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
             foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
             Length_of_snake += 1
