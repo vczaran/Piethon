@@ -126,6 +126,7 @@ pygame.init()
 white = (255, 255, 255)
 yellow = (255, 255, 102)
 black = (0, 0, 0)
+brown = (150, 75, 0)
 red = (213, 50, 80)
 green = (0, 255, 0)
 blue = (50, 153, 213)
@@ -148,9 +149,10 @@ def Your_score(score):
     value = score_font.render("Score: " + str(score), True, yellow)
     dis.blit(value, [0, 0])
  
-def our_snake(snake_block, snake_list):
+def our_snake(snake_list):
     for x in snake_list:
-        pygame.draw.rect(dis, black, [x[0], x[1], snake_block, snake_block])
+        # pygame.draw.rect(dis, black, [x[0], x[1], snake_block, snake_block])
+        pygame.draw.circle(dis, black, (x[0], x[1]), 8)
  
  
 def message(msg, color):
@@ -183,6 +185,9 @@ def gameLoop():
             pygame.display.update()
  
             for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    game_over = True
+                    game_close = False
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_q:
                         game_over = True
@@ -224,7 +229,7 @@ def gameLoop():
             if x == snake_Head:
                 game_close = True
  
-        our_snake(snake_block, snake_List)
+        our_snake(snake_List)
         Your_score(Length_of_snake - 1)
  
  
